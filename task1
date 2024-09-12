@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang= "en">
+
+<head>
+  <meta charset = "UTF-8">
+  <link rel="shortcut icon" href="image.png">
+  <title>Task1</title>
+</head>   
+
+<body>
+  <header>
+    <h1>Site2</h1>
+  </header>
+  <main>
+          <li>ссылка изображение<br>
+            <a href="https://github.com/Anastasia>"><img src="image.jpg" width="200" height="200" alt="описание картинки"></a>
+          </li>
+          <ol>
+            <li><a href = "http://www.kubsu.ru/index.php"> Абсолютная гиперссылка на главную страницу сайта kubsu.ru</a></li>
+            <li><a href = "https://www.kubsu.ru/index.php"> Абсолютная гиперссылка на главную страницу сайта kubsu.ru в протоколе https</a></li>
+            <li><a href="/pages/page" title="pages/page"> сокращённяая ссылка на внутреннюю</a>
+            <li><a href="/" title="main"> сокращённая ссылка на главную</a></li>
+            <li><a href="#sign" title="fragment"> ссылка на фрагмент текущей страницы</a></li>  
+            <li><a href="http://github.com?parameter1=p1&parameter2=p2&parameter3=p3" title="three parameters"> ссылка с тремя параметрами URL</a></li>
+            <li><a href="http://github.com?id=1000000" title="id"> ссылка с параметром id в URL</a></li>
+          </ol>
+          <ul>
+            <li><a href="page"> относительная ссылка на страницу в текущем каталоге</a><li>
+            <li><a href="./about/page"> относительная ссылка на страницу в каталоге about</a></li>
+            <li><a href="../page"> относительная ссылка на страницу в каталоге уровнем выше текущего</a><li>
+            <li><a href="../../page"> относительная ссылка на страницу в каталоге на два уровня выше текущего</a></li>
+          </ul>
+
+          <ul>
+            <li>
+              <p>контекстная <a href="https://youtube.com" stule="display: inline-block"> ссылка</a> в тексте абзаца</p>
+            </li>
+            <li>
+              <a href="http://github.com/Anastasia#files"> ссылка на фрагмент стороннего сайта</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <p>Ссылки: прямоугольная и круглая область картинки </p>
+              <br>
+              <img src="image.jpg" wight="200" height="200" alt="картинка" usemap="#map">
+              <map>
+                <area shape="rect" coords="0, 0, 200, 100" href="https://kubsu.ru" alt="прямоугольная область">
+                <area shape="circle" coords="100,150,50" href="https://kubstu.ru" alt="круглая область">
+              </map>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href=""> ссылка с пустым href</a>
+            </li>
+            <li>
+              <a>ссылка без href</a>
+            </li>
+            <li> <a href="http://lucky.re" rel="nofollow"> ссылка, по которой запрещён переход поисковикам</a></li>
+            <li> <!--noindex--><a href="http://github.com">ссылка, запрещённая для индексации поисковиками</a><!--/noindex--></li>
+            <li> <a href="ftp://user:2334425@youtube.com"> Ссылка на файл на сервере FTP с авторизацией</a></li>
+          </ul>
+      <a id="sign"></a>
+      <form action="/" method="post" style="display: inherit">
+                    <label for="name" >ФИО</label>
+                    <input type="text" name="ФИО" id="name" placeholder="Петров Святозар Курочкин">
+                    <label for="phone">Телефон</label>
+                    <input type="tell" id="phone" placeholder="+7 ***--">
+                    <label for="email">Введите email:</label>
+                    <input type="email" name="email" id="email" required>
+                    <label for="birth">Дата рождения</label>
+                    <input type="date" id="birth">
+                    <span>Пол</span>
+                    <input type="radio" name="state" id="male" value="Мужской">
+                    <label for="male">Мужской</label>
+                    <input type="radio" name="state" id="female" value="Женский">
+                    <label for="female">Женский</label><br><br>
+                    <label for="lang">Любимый язык программирования</label>
+                    <select name="lang[]" id="lang" multiple="multiple">
+                        <option value="">C++</option>
+                        <option value="">Python</option>
+                        <option value="">Java</option>
+                        <option value="">Assembly</option>
+                    </select>
+                    <label for="biography">Биография</label>
+                    <textarea name="" id="biography" cols="30" rows="10"></textarea>
+                    <label for="agree-input">С контрактом ознакомлен</label>
+                    <input type="checkbox" id="agree-input">
+                  <button type="submit">Сохранить</button>
+            </form>
+  </main>
+</body>
+</html>
