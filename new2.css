@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;1,500&display=swap');
+
+* {
+    font-family: 'poppins', sans-serif;
+    scroll-margin-top: calc(20vw * 0.9);
+}
+
+:root {
+    --dark-color: #f285c3;
+    --acc-color: #eac4f1;
+}
+
+::selection {
+    color: #000;
+    background-color: var(--acc-color);
+}
+
+body {
+    background-color: #eac4f1;
+}
+
+header {
+    background-color: var(--acc-color);
+    border: 3px solid  #fd06af;
+    border-radius: 20px;
+    color: #fd06af;
+}
+
+#logo {
+    mix-blend-mode: multiply;
+    width: 20vw;
+}
+
+#name {
+    font-size: 8vw;
+    font-weight: 400;
+}
+
+#navigation-list li a {
+    transition: .2s ease-out;
+}
+
+#navigation-list li {
+    background-color: var(--acc-color);
+    transition: .2s ease-out;
+}
+
+#navigation-list li:nth-child(1) {
+    border: 3px solid  #fd06af;
+    border-bottom: 0;
+    border-radius: 20px 20px 0 0;
+}
+
+#navigation-list li:nth-child(2) {
+    border: 3px solid  #fd06af;
+    border-bottom: 0;
+    border-top: 0;
+}
+
+#navigation-list li:nth-child(3) {
+    border: 3px solid  #fd06af;
+    border-top: 0;
+    border-radius: 0 0 20px 20px;
+}
+
+#navigation-list li:hover {
+    background-color: var(--dark-color);
+    color:  #fd06af;
+}
+
+#navigation-list li a:hover {
+    margin: 10px 0;
+    color: #0d0c0c !important;
+    font-weight: 500;
+}
+
+#content > div {
+    margin: 4px;
+    padding: 10px;
+    background-color: #eac4f1;
+    backdrop-filter: blur(20px);
+    border: 3px solid  #fd06af;
+    border-radius: 20px;
+}
+
+h2 {
+    color:  #fd06af;
+}
+
+table {
+    border-collapse: separate;
+}
+
+#table table thead tr th {
+    border: 2px solid #fd06af;
+    border-radius: 10px;
+    padding: 0 5px;
+    color: #fd06af;
+    font-weight: 500;
+}
+
+#table table tbody tr td {
+    border: 1px solid #fd06af;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: .9em;
+    text-align: center;
+    background-color: var(--acc-color);
+    transition: .5s;
+}
+
+#table table tbody tr:nth-child(odd) td {
+    background-color: var(--acc-color);
+}
+
+#table table tbody tr:nth-child(even) td{
+    background-color: #f5dbf6;
+}
+
+#table table tbody tr td:hover {
+    border-radius: 10px;
+    padding: 5px;
+    font-size: .9em;
+    text-align: center;
+    background-color: var(--dark-color);
+    color: #090000
+}
+
+#links {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #080505;
+    border-radius: 20px;
+}
+
+#links ul {
+    padding: 15px;
+}
+
+#links ul li {
+    color: #090505;
+    margin: 5px;
+}
+
+#links ul li a {
+    text-decoration: none;
+    color: #fd06af;
+    transition: .5s;
+}
+
+#links ul li a:hover {
+    text-decoration: underline;
+    color: #080808;
+}
+
+#links ul li ol {
+    list-style: none;
+}
+
+#form input, #form select, #form textarea {
+    background-color: var(--dark-color);
+    color: #858384;
+}
+
+#form input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(0.6);
+}
+
+#form input::placeholder {
+    color: #858384;;
+}
+
+
+footer {
+    color: #fd06af;
+    padding: .5rem;
+    border: 3px solid #fd06af;
+    border-radius: 20px;
+    background-color: #ffe8f6;
+    backdrop-filter: blur(20px);
+}
+
+@media screen and (width >= 992px) {
+    #logo {
+        width: 10vw;
+    }
+
+    #name {
+        font-size: 4vw;
+    }
+
+    #content div {
+        max-width: 980px;
+        margin: 10px auto;
+    }
+
+
+    #navigation-list li a {
+        padding: 10px 30px !important;
+    }
+
+    #navigation-list li:nth-child(1) {
+        border: 3px solid #fd06af;
+        border-right: 0;
+        border-radius: 20px 0 0 20px;
+    }
+    
+    #navigation-list li:nth-child(2) {
+        border: 3px solid #fd06af;
+        border-left: 0;
+        border-right: 0;
+    }
+    
+    #navigation-list li:nth-child(3) {
+        border: 3px solid #fd06af;
+        border-left: 0;
+        border-radius: 0 20px 20px 0;
+    }
+
+    #navigation-list li a:hover {
+        margin: 0 10px;
+        color: #f5dbf6;
+        font-weight: 500;
+    }
+}
+
+
