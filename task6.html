@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+    <link rel="stylesheet" href="task6.css">
+</head>
+<body>
+    <main>
+        <div class="calculator">
+            <div class="calc-head">
+                <h1 id="title">Calculator for task 6</h1>
+            </div>
+            <div class="calc-body">
+                <div class="calc-input">
+                    <div id="product-type-outter" class="plan-container">
+                        <h3 class="calc-text">Выберите продукт </h3>
+                        <div id="calc-radio-group" class="plan-fields"></div>
+                    </div>
+                    <input type="text" id="count-6" class="count count-6" placeholder="Количество">
+                            <h3>Опции</h3>
+                            <div id="subproducts" class="input-container">
+                                <select class="option" name="subproducts-select" id="select" disabled>
+                                    <option class="option" value="">Выберите опцию</option>
+                                </select>
+                            </div>
+                            <h3 class="calc-text">Дополнительно</h3>
+                            <div id="property-container">
+                                    <input type="checkbox" name="product-property" id="property" value="" disabled>
+                                    <label for="product-property" id="property-label">Нет</label>
+                            </div>
+                </div>
+                    <button id="button">Рассчитать</button>
+                    <div id="errorlog"></div>
+                    <div id="answer">Ответ</div>
+            </div>
+        </div>
+    </main>
+    <script src="INDEX6.js"></script>
+</body>
+</html>
