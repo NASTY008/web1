@@ -1,95 +1,243 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+const products = {
+    "product1": {
+        "name": "Додстер",
+        "price": 150,
+        "subproducts": [ ],
+        "subproperty": { }
+    },
+    "product2": {
+        "name": "Пицца",
+        "price": 300,
+        "subproducts": [
+            {
+                "name": "мясо - 100 грамм",
+                "price": 400
+            },
+            {
+                "name": "помидоры - 100 грамм",
+                "price": 340
+            },
+            {
+                "name": "сыр - 100 грамм",
+                "price": 350
+            },
+            {
+                "name": "грибы - 100 грамм",
+                "price": 330
+            }
+        ],
+        "subproperty": { }
+    },
+    "product3": {
+        "name": "Картошка фри",
+        "price": 100,
+        "subproducts": [ ],
+        "subproperty": {
+            "name": "Соус",
+            "multiplier": 1.2
+        }
+    },
+    "product4": {
+        "name": "Салат",
+        "price": 250,
+        "subproducts": [
+            {
+                "name": "Цезарь",
+                "price": 250
+            },
+            {
+                "name": "Греческий",
+                "price": 180
+            },
+            {
+                "name": "Прекрасный",
+                "price": 250
+            },
+        ],
+        "subproperty": {
+            "name": "Салфетки",
+            "multiplier": 1.8
+        }
+    }
 }
-body {
-    background-color: #faeaea;
-    font-family: sans-serif;
+
+function loadProductsEl(productsEl) {
+    for (let i = 1; i <= Object.keys(products).length; i++) {
+        let productEl = document.createElement("div");
+        let productRadioEl = document.createElement("input");
+        
+        productRadioEl.setAttribute("type", "radio");
+        productRadioEl.setAttribute("id", `radio-${i}`);
+        productRadioEl.setAttribute("value", `product${i}`);
+        productRadioEl.setAttribute("name", "product-type");
+        productEl.appendChild(productRadioEl);
+
+        let productRadioLabelEl = document.createElement("label");
+        productRadioLabelEl.setAttribute("for", `radio-${i})`);
+        productRadioLabelEl.innerText = products[`product${i}`]["name"];
+        productEl.appendChild(productRadioLabelEl);
+
+        productsEl.appendChild(productEl);
+    }
 }
-main {
-    background-color: #fab010;
-    padding: 1dvw;
-    width: 100%;
-    max-width: 420px;
-    margin: 20dvh auto;
-    border-radius: 10px;
-    color: #fff
+
+function getProductType(typeSelectEls) {
+    let selectedType;
+
+    typeSelectEls.forEach(typeSelectEl => {
+        if (typeSelectEl.checked === true) {
+            selectedType = typeSelectEl.value;
+        }
+    });
+    const product = products[selectedType];
+
+    return product;
 }
-main * {
-    margin: 1dvh 0;
+
+function formStandartSelectOption() {
+    const option = document.createElement("option");
+    const name = document.createTextNode("Выберите опцию");
+    option.setAttribute("value", "");
+    option.appendChild(name);
+
+    return option;
 }
-#title {
-    font-size: 40px;
-    color: #fcdee8;
+
+function loadSubproductsOptions(subproducts, subproductsSelected) {
+    if (subproducts.length > 0) {
+        subproductsSelected.removeAttribute("disabled");
+    }
+    else {
+        subproductsSelected.setAttribute("disabled", "");
+    }
+    subproducts.forEach((subproduct) => {
+        const option = document.createElement("option");
+        let name = document.createTextNode(subproduct["name"]);
+        option.setAttribute("value", subproduct["price"]);
+        option.appendChild(name);
+        subproductsSelected.appendChild(option);
+    });
 }
-.input-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+function loadSubproductProperty(subproductProperty, subproductsCheckbox, subproductsCheckboxLabel) {
+    
+    if (Object.keys(subproductProperty).length > 0) {
+        subproductsCheckbox.removeAttribute("disabled");
+        subproductsCheckbox.setAttribute("value", subproductProperty["multiplier"]);
+        subproductsCheckboxLabel.innerText = subproductProperty["name"];
+    }
+    else {
+        subproductsCheckbox.setAttribute("disabled", "");
+        subproductsCheckbox.setAttribute("value", "");
+        subproductsCheckboxLabel.innerText = "Нет";
+    }
 }
-.input-container * {
-    height: 40px;
-    font-size: 20px;
-    border-color: #fcdee8;
-    padding: 0 1dvw;
-    border-radius: 10px;
+
+function loadSubproductEl(product) {
+    let subproductsSelectEl = document.getElementById("select");
+    let subproductsCheckbox = document.getElementById("property");
+    let subproductsCheckboxLabel = document.getElementById("property-label");
+    
+    subproductsSelectEl.innerHTML = " ";
+    option = formStandartSelectOption();    
+    subproductsSelectEl.appendChild(option);
+
+    let subproducts = product["subproducts"];
+    loadSubproductsOptions(subproducts, subproductsSelectEl);
+    
+    let subproductProperty = product["subproperty"];
+    loadSubproductProperty(subproductProperty, subproductsCheckbox, subproductsCheckboxLabel);
 }
-.plan-container {
-    background-color: #fcdee8;
-    color: #000;
-    padding: 1dvw;
-    border-radius: 10px;
+
+function changeProductType() {
+    const typeSelectEls = document.getElementsByName("product-type");
+    const product = getProductType(typeSelectEls);
+    loadSubproductEl(product);
 }
-.plan-container .plan-fields {
-    font-size: 20px;
+
+function getQuantity(quantityEl) {
+    return parseInt(quantityEl.value);
 }
-.plan-container .plan-fields input {
-    margin-right: 1dvw;
+
+function getProductPrice(subproductTypeEl, product) {
+    let productPrice;
+    if ((subproductTypeEl.getAttribute("disabled") === null) && !(subproductTypeEl.value === "")) {
+        productPrice = subproductTypeEl.value;
+    }
+    else {
+        if (product == undefined) {
+            const log = document.getElementById("errorlog");
+            log.style.display = "block";
+            log.innerText = "Ошибка, некорректные данные";
+            return;
+        }
+        productPrice = product["price"];
+    }
+
+    return productPrice;
 }
-#list {
-    width: 100%;
-    max-width: 200px;
+
+function getProductMultiplier(subproductPropertyEl) {
+    let productMultiplier;
+    if (subproductPropertyEl.getAttribute("disabled") === null && subproductPropertyEl.checked) {
+        productMultiplier = subproductPropertyEl.value;
+    }
+    else {
+        productMultiplier = 1;
+    }
+    return productMultiplier;
 }
-.count-6 {
-    padding: 1dvw;
-    font-size: 20px;
-    background-color: #fcdee8;
+
+function isResultValid(result) {
+    return !(isNaN(result) || result < 0);
 }
-.count {
-    width: 100%;
-    max-width: 150px;
-    outline: none;
-    border: none;
-    border-radius: 10px;
+
+const log = document.getElementById("errorlog");
+function calcResult(quantity, productPrice, productMultiplier) {
+    let result = quantity * productPrice * productMultiplier;
+    if (isResultValid(result)) {
+        log.style.display = "none";
+        return result;
+    }
+    else {
+        log.style.display = "block";
+        log.innerText = "Ошибка, введенные данные некорректны";
+        return 0;
+    }
 }
-#button {
-    width: 100%;
-    height: 40px;
-    background-color: #fcdee8;
-    color: #000;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    transition: .4s ease-out;
-    border-radius: 10px;
+
+function writeResult(result) {
+    let resultEl = document.getElementById("answer");
+    resultEl.innerHTML = result;
 }
-.option {
-    width: 100%;
+
+function calculate() {
+    let quantityEl = document.getElementById("count-6");
+    let typeSelectEls = document.getElementsByName("product-type");
+
+    let product = getProductType(typeSelectEls);
+
+    let subproductTypeEl = document.getElementById("select");
+    let subproductPropertyEl = document.getElementById("property");
+
+    let quantity = getQuantity(quantityEl);
+
+    let productPrice = getProductPrice(subproductTypeEl, product);
+
+    let productMultiplier = getProductMultiplier(subproductPropertyEl);
+
+    let result = calcResult(quantity, productPrice, productMultiplier);
+    writeResult(result);    
 }
-#errorlog {
-    display: none;
-    background-color: red;
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 10px;
-}
-#answer {
-    background-color: #96faee;
-    color: #000;
-    font-size: 20px;
-    padding: 1rem;
-    border-radius: 10px;
-}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    let productsEl = document.getElementById("calc-radio-group");
+    loadProductsEl(productsEl);
+
+    let selectEl = document.getElementById("calc-radio-group");
+    selectEl.addEventListener("change", changeProductType);
+
+    let buttonEl = document.getElementById("button");
+    buttonEl.addEventListener("click", calculate);
+});
