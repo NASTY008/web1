@@ -1,3 +1,4 @@
+
 const products = {
     "product1": {
         "name": "Додстер",
@@ -67,14 +68,14 @@ function loadProductsEl(productsEl) {
         let productRadioEl = document.createElement("input");
         
         productRadioEl.setAttribute("type", "radio");
-        productRadioEl.setAttribute("id", `radio-${i}`);
-        productRadioEl.setAttribute("value", `product${i}`);
+        productRadioEl.setAttribute("id", 'radio-${i}');
+        productRadioEl.setAttribute("value", 'product${i}');
         productRadioEl.setAttribute("name", "product-type");
         productEl.appendChild(productRadioEl);
 
         let productRadioLabelEl = document.createElement("label");
-        productRadioLabelEl.setAttribute("for", `radio-${i})`);
-        productRadioLabelEl.innerText = products[`product${i}`]["name"];
+        productRadioLabelEl.setAttribute("for", 'radio-${i}');
+        productRadioLabelEl.innerText = products['product${i}']["name"];
         productEl.appendChild(productRadioLabelEl);
 
         productsEl.appendChild(productEl);
@@ -132,7 +133,6 @@ function loadSubproductProperty(subproductProperty, subproductsCheckbox, subprod
         subproductsCheckboxLabel.innerText = "Нет";
     }
 }
-
 function loadSubproductEl(product) {
     let subproductsSelectEl = document.getElementById("select");
     let subproductsCheckbox = document.getElementById("property");
